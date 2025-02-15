@@ -12,7 +12,7 @@ import com. example. kobkot_tanks. Direction. UP
 import com. example.kobkot_tanks. Direction.DOWN
 import com. example.kobkot_tanks. Direction. LEFT
 import com. example.kobkot_tanks. Direction.RIGHT
-import com.example.battletanks.databinding.ActivityMainBinding
+import com.example.kobkot_tanks.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
