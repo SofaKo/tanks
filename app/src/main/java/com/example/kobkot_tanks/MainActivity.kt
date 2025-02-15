@@ -1,17 +1,18 @@
 package com.example.kobkot_tanks
 
 
-import android.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os. Bundle
 import android.view.KeyEvent
 import android.view. KeyEvent.KEYCODE_DPAD_DOWN
 import android.view.KeyEvent.KEYCODE_DPAD_LEFT
 import android.view.KeyEvent.KEYCODE_DPAD_RIGHT
 import android.view. KeyEvent.KEYCODE_DPAD_UP
-import com. example. kobkot_tanks. Direction. UP
-import com. example.kobkot_tanks. Direction.DOWN
-import com. example.kobkot_tanks. Direction. LEFT
-import com. example.kobkot_tanks. Direction.RIGHT
+import android.widget.FrameLayout
+import com. example. kobkot_tanks.Direction. UP
+import com. example.kobkot_tanks.Direction.DOWN
+import com. example.kobkot_tanks.Direction. LEFT
+import com. example.kobkot_tanks.Direction.RIGHT
 import com.example.kobkot_tanks.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity() {
                 (binding.myTank.layoutParams as FrameLayout.LayoutParams).leftMargin += 50
             }
         }
+
         binding.container.removeView(binding.myTank)
         binding.container.addView(binding.myTank)
     }
