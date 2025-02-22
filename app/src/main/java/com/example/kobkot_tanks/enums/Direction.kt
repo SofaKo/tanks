@@ -1,4 +1,4 @@
-package com.example.kobkot_tanks
+package com.example.kobkot_tanks.enums
 
  enum class Direction {
      UP,

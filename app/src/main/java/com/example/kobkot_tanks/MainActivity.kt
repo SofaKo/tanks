@@ -13,11 +13,12 @@ import android.view.MenuItem
 import android.view.View.*
 import android.widget.FrameLayout
 import androidx.core.view.marginTop
-import com. example. kobkot_tanks.Direction. UP
-import com. example.kobkot_tanks.Direction.DOWN
-import com. example.kobkot_tanks.Direction. LEFT
-import com. example.kobkot_tanks.Direction.RIGHT
+import com.example.kobkot_tanks.enums.Direction. UP
+import com.example.kobkot_tanks.enums.Direction.DOWN
+import com.example.kobkot_tanks.enums.Direction. LEFT
+import com.example.kobkot_tanks.enums.Direction.RIGHT
 import com.example.kobkot_tanks.databinding.ActivityMainBinding
+import com.example.kobkot_tanks.enums.Direction
 
 const val CELL_SIZE = 50
 
