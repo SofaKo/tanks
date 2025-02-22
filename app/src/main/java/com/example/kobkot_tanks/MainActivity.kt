@@ -10,6 +10,7 @@ import android.view.KeyEvent.KEYCODE_DPAD_RIGHT
 import android.view. KeyEvent.KEYCODE_DPAD_UP
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View.*
 import android.widget.FrameLayout
 import androidx.core.view.marginTop
 import com. example. kobkot_tanks.Direction. UP
@@ -40,9 +41,11 @@ class MainActivity : AppCompatActivity() {
     private fun swichEditMode(){
         if (editMode) {
             gridDrawer.removeGrid()
+            binding.materialsContainer.visibility = INVISIBLE
         }
         else {
             gridDrawer.drawGrid()
+            binding.materialsContainer.visibility = VISIBLE
         }
         editMode = !editMode
     }
