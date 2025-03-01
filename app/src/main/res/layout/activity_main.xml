@@ -37,27 +37,27 @@
         app:layout_constraintTop_toTopOf="parent">
 
     <ImageView
-        android:id="@+id/editon_brick"
+        android:id="@+id/editor_brick"
         android:layout_margin="8dp"
         android:src="@drawable/ic_clear"
         android:layout_width="@dimen/cell_size"
         android:layout_height="@dimen/cell_size"/>
     <ImageView
-        android:id="@+id/editon_clear"
+        android:id="@+id/editor_clear"
         android:layout_margin="8dp"
         android:src="@drawable/brick"
         android:layout_width="@dimen/cell_size"
         android:layout_height="@dimen/cell_size"/>
 
     <ImageView
-        android:id="@+id/editon_concrete"
+        android:id="@+id/editor_concrete"
         android:layout_margin="8dp"
         android:src="@drawable/concrete"
         android:layout_width="@dimen/cell_size"
         android:layout_height="@dimen/cell_size"/>
 
     <ImageView
-         android:id="@+id/editon_grass"
+         android:id="@+id/editor_grass"
          android:layout_margin="8dp"
          android:src="@drawable/grass"
          android:layout_width="@dimen/cell_size"

@@ -1,6 +1,7 @@
 package com.example.kobkot_tanks
 
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os. Bundle
 import android.view.KeyEvent
@@ -18,7 +19,11 @@ import com.example.kobkot_tanks.enums.Direction.DOWN
 import com.example.kobkot_tanks.enums.Direction. LEFT
 import com.example.kobkot_tanks.enums.Direction.RIGHT
 import com.example.kobkot_tanks.databinding.ActivityMainBinding
+import com.example.kobkot_tanks.drawers.ElementsDrawer
 import com.example.kobkot_tanks.enums.Direction
+import com.example.kobkot_tanks.enums.Material
+import com.example.kobkot_tanks.models.Coordinate
+import java.nio.file.Files.move
 
 const val CELL_SIZE = 50
 
@@ -28,7 +33,11 @@ lateinit var binding: ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private var editMode = false
     private val gridDrawer by lazy {
-        GridDrawer(context = this)
+        GridDrawer(binding.container)
+    }
+
+    private val elementsDrawer by lazy {
+        ElementsDrawer(binding.container)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +46,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.title = "Menu"
+
+        binding.editorClear.setOnClickListener { elementsDrawer.currentMaterial = Material.EMPTY }
+        binding.editorBrick.setOnClickListener { elementsDrawer.currentMaterial = Material.BRICK }
+        binding.editorConcrete.setOnClickListener {
+            elementsDrawer.currentMaterial = Material.CONCRETE
+        }
+        binding.editorGrass.setOnClickListener { elementsDrawer.currentMaterial = Material.GRASS }
+        binding.container.setOnTouchListener { _, event ->
+            elementsDrawer.onTouchContainer(event.x, event.y)
+            return@setOnTouchListener true
+        }
     }
 
     private fun swichEditMode(){
@@ -68,43 +88,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         when (keyCode) {
-            KEYCODE_DPAD_UP -> move(UP)
-            KEYCODE_DPAD_DOWN -> move(DOWN)
-            KEYCODE_DPAD_LEFT -> move(LEFT)
-            KEYCODE_DPAD_RIGHT -> move(RIGHT)
+            KEYCODE_DPAD_UP -> elementsDrawer.move(binding.myTank, UP)
+            KEYCODE_DPAD_DOWN -> elementsDrawer.move(binding.myTank, DOWN)
+            KEYCODE_DPAD_LEFT -> elementsDrawer.move(binding.myTank, LEFT)
+            KEYCODE_DPAD_RIGHT -> elementsDrawer.move(binding.myTank, RIGHT)
         }
         return super.onKeyDown(keyCode, event)
     }
 
-    private fun move(direction: Direction) {
-        when (direction) {
-            UP -> {
-                binding.myTank.rotation = 0F
-                if (binding.myTank.marginTop > 0) {
-                    (binding.myTank.layoutParams as FrameLayout.LayoutParams).topMargin -= CELL_SIZE
-                }
-            }
-            DOWN -> {
-                if (binding.myTank.marginTop + binding.myTank.height < binding.container.height / (CELL_SIZE * CELL_SIZE)) {
-                    binding.myTank.rotation = 180F
-                    (binding.myTank.layoutParams as FrameLayout.LayoutParams).topMargin += CELL_SIZE
-                }
-            }
-            LEFT -> {
-                if (binding.myTank.marginTop > 0) {
-                    binding.myTank.rotation = 270F
-                    (binding.myTank.layoutParams as FrameLayout.LayoutParams).leftMargin -= CELL_SIZE
-                }
-            }
-            RIGHT -> {
-                if (binding.myTank.marginTop + binding.myTank.height < binding.container.height / (CELL_SIZE * CELL_SIZE)) {
-                    binding.myTank.rotation = 90F
-                    (binding.myTank.layoutParams as FrameLayout.LayoutParams).leftMargin += CELL_SIZE
-                }
-            }
-        }
 
-        binding.container.removeView(binding.myTank)
-        binding.container.addView(binding.myTank)
-    }
 }
